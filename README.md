@@ -1,10 +1,10 @@
 # svelte-starter
 
-An opinionated [Svelte](https://svelte.dev) project starter template baking in:
+An opinionated [Svelte](https://svelte.dev) project starter template with the following baked in:
 
-[X] [Navaid](https://github.com/lukeed/navaid) for SPA routing
-[X] [Tailwind](https://github.com/tailwindlabs/tailwindcss) as CSS utility framework
-[X] Linting with [Standardjs](https://github.com/standard/standard) rules
+- [x] [Navaid](https://github.com/lukeed/navaid) for SPA routing
+- [x] [Tailwind](https://github.com/tailwindlabs/tailwindcss) as CSS utility framework
+- [x] Linting with [Standardjs](https://github.com/standard/standard) rules
 
 
 ## Install
