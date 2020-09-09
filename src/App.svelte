@@ -28,5 +28,5 @@ onDestroy(router.unlisten)
 <Header />
 
 <main>
-	<svelte:component this={component} {...props} />
+  <svelte:component this={component} {...props} />
 </main>
