@@ -1,7 +1,7 @@
 <script>
 import { pages } from '../stores.js'
 
-let items = [
+const items = [
   { title: 'HOME', href: '/' },
   { title: 'ABOUT', href: '/about' },
   { title: '404', href: '/error' }

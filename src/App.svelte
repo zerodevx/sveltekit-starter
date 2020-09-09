@@ -10,16 +10,16 @@ import About from './pages/About.svelte'
 let component
 let props = {}
 const run = (thunk, params) => {
-	$pages.prev = $pages.cur
-	$pages.cur = location.pathname
-	props = params || {}
-	component = thunk
+  $pages.prev = $pages.cur
+  $pages.cur = location.pathname
+  props = params || {}
+  component = thunk
 }
 const router = Navaid('/')
-	.on('/about', () => run(About))
-	.on('/', () => run(Home))
-	.on('*', () => run(NotFound))
-	.listen()
+  .on('/about', () => run(About))
+  .on('/', () => run(Home))
+  .on('*', () => run(NotFound))
+  .listen()
 
 onDestroy(router.unlisten)
 
