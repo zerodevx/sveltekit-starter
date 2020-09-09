@@ -1,0 +1,21 @@
+@tailwind base;
+
+html {
+  @apply w-full h-full m-0 bg-gray-100 text-gray-900;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  @apply w-full h-full flex flex-col;
+}
+main {
+  @apply relative w-full flex-1;
+}
+
+@tailwind components;
+
+.page {
+  @apply absolute inset-0 overflow-x-hidden overflow-y-auto scrolling-touch;
+  will-change: transform, opacity;
+}
+
+@tailwind utilities;

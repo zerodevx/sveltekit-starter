@@ -1,0 +1,36 @@
+{
+  "name": "svelte-starter",
+  "version": "1.0.0",
+  "scripts": {
+    "tailwind:watch": "chokidar 'src/tailwind*.*' -c 'npm run tailwind:build'",
+    "tailwind:build": "tailwind build src/tailwind.css -c src/tailwind.config.js -o public/build/global.css",
+    "svelte:build": "rollup -c",
+    "svelte:dev": "rollup -c -w",
+    "dev": "npm-run-all tailwind:build -p tailwind:watch svelte:dev",
+    "start": "sirv public --single",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "chokidar-cli": "^2.1.0",
+    "eslint": "^7.8.1",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "navaid": "^1.1.1",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.3.4",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^6.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0",
+    "tailwindcss": "^1.8.5"
+  },
+  "dependencies": {
+    "sirv-cli": "^1.0.0"
+  }
+}
