@@ -10,8 +10,7 @@ import About from './pages/About.svelte'
 let component
 let props = {}
 const run = (thunk, params) => {
-  $pages.prev = $pages.cur
-  $pages.cur = location.pathname
+  $pages = [location.pathname, ...$pages]
   props = params || {}
   component = thunk
 }

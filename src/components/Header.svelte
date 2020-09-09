@@ -14,7 +14,8 @@ const items = [
       {#each items as { title, href }}
       <li>
         <a
-          class="flex items-center justify-center border-red-500 {$pages.cur === href ? 'border-b-2' : ''} hover:text-red-500 px-3 pt-4 pb-1"
+          class="flex items-center justify-center border-red-500 hover:text-red-500 px-3 pt-4 pb-1"
+          class:border-b-2={$pages[0] === href}
           {href}>{title}</a>
       </li>
       {/each}
