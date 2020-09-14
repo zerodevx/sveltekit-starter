@@ -8,7 +8,7 @@
     "svelte:dev": "rollup -c -w",
     "dev": "npm-run-all tailwind:build -p tailwind:watch svelte:dev",
     "start": "sirv public --single",
-    "lint": "eslint src"
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^14.0.0",
