@@ -4,10 +4,12 @@
   "scripts": {
     "tailwind:watch": "chokidar 'src/tailwind*.*' -c 'npm run tailwind:build'",
     "tailwind:build": "tailwind build src/tailwind.css -c src/tailwind.config.js -o public/build/global.css",
+    "tailwind:build-production": "NODE_ENV=production npm run tailwind:build",
     "svelte:build": "rollup -c",
     "svelte:dev": "rollup -c -w",
-    "dev": "npm-run-all tailwind:build -p tailwind:watch svelte:dev",
     "start": "sirv public --single",
+    "dev": "npm-run-all tailwind:build -p tailwind:watch svelte:dev",
+    "build": "run-s svelte:build tailwind:build-production",
     "lint": "eslint ."
   },
   "devDependencies": {
