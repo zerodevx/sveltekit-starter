@@ -14,12 +14,10 @@ const items = [
       {#each items as { title, href }}
       <li>
         <a
-          class="flex items-center justify-center border-red-500 hover:text-red-500 px-3 pt-4 pb-1"
-          class:border-b-2={$pages[0] === href}
+          class="{$pages[0] === href ? 'border-b-4 ' : ''}flex items-center justify-center mx-2 px-1 pt-4 pb-1 border-red-500 hover:text-red-500"
           {href}>{title}</a>
       </li>
       {/each}
     </ul>
   </nav>
 </header>
-
