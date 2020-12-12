@@ -14,7 +14,8 @@ main {
 @tailwind components;
 
 .page {
-  @apply absolute inset-0 overflow-x-hidden overflow-y-auto scrolling-touch;
+  @apply absolute inset-0 overflow-x-hidden overflow-y-auto;
+  -webkit-overflow-scrolling: touch;
   will-change: transform, opacity;
 }
 
