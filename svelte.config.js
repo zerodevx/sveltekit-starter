@@ -13,7 +13,9 @@ const config = {
       postcss: true
     })
   ],
-  router: true,
+  paths: {
+    base: ''
+  },
   ssr: false,
   trailingSlash: 'never'
 }
