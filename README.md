@@ -6,53 +6,48 @@ SvelteKit with Tailwind, ESLint, Prettier and a Static SPA Build.
 
 ## Usage
 
-1. Scaffold project with [degit](https://github.com/Rich-Harris/degit):
-
-```
+```bash
+# Clone
 $ npx degit zerodevx/svelte-kit-starter my-app
 $ cd my-app
-```
 
-2. Optionally, update dependencies with [npm-check-updates](https://github.com/raineorshine/npm-check-updates):
-
-```
+# Upgrade
 $ npx npm-check-updates -u
-```
 
-3. Install dependencies:
-
-```
+# Install
 $ npm i
-```
 
-4. Start the dev server:
-
-```
+# Develop
 $ npm run dev -- --open
-```
 
-5. Write your code, format and lint:
-
-```
+# Format and Lint
 $ npm run format
 $ npm run lint
-```
 
-6. Build the app (production build at `/build`):
-
-```
+# Build
 $ npm run build
 ```
 
-7. Optionally, preview the app locally:
+## Features
 
-```
-$ npm run preview
+### Staging and Production builds
+
+Often, there are slight differences between `staging` and `production` builds. For example, you'll probably want to add
+the `noindex` meta for `staging` builds. This behaviour is
+[baked in](https://github.com/zerodevx/svelte-kit-starter/blob/main/src/routes/__layout.svelte). To access the build
+type within a Svelte component, do like so:
+
+```html
+<script>
+  import { BUILD } from '$lib/env'
+</script>
+
+<p>Build Type: {BUILD}</p>
 ```
 
 ## Opinions
 
-### Static SPA Build
+### Static SPA build
 
 Uses [adapter-static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) to pre-render `index.html` in
 all leaf (link) pages. This maintains SEO-bility. Leaf pages act as entry-points to the SPA; thereafter the client-side
@@ -88,11 +83,10 @@ The following configuration is used:
 
 #### No semis
 
-So. Semicolons are **optional** in Javascript. Ironically, there are more rules to follow when using semis. Without,
-just remember not to start lines with `(` or `[`:
+So. Semicolons are **optional** in Javascript. Ironically, there are more rules to follow when using semis than without.
 
 ```js
-;[1, 2, 3].forEach(bar) // if you must, this is the only time you should use a semi;
+;[1, 2, 3].forEach(bar) // if you must, this is probably the only time you should use a semi;
 ```
 
 Also, code looks cleaner too.
@@ -104,4 +98,4 @@ amount of whitespace when tabs are used. Just use spaces and get proper display 
 
 ### Linting
 
-`eslint-plugin-html` is baked in to lint `.html` files too.
+`eslint-plugin-html` is baked in to lint `<script>` tags in `.html` files too.
