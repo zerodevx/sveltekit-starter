@@ -1,6 +1,6 @@
 <script>
 import { BUILD } from '$lib/env'
-import '../app.postcss'
+import '../app.css'
 </script>
 
 <svelte:head>

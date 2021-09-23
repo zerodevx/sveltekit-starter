@@ -58,10 +58,12 @@ router takes control. Why? Because servers should just _serve_. The `/build` can
 
 ### Tailwind CSS
 
-Use Tailwind anywhere. You can use Tailwind utility classes like bg-blue-700 in the markup (components, routes,
-app.html). Use Tailwind directives like @apply and @screen or use the theme function in Svelte style lang="postcss"
-blocks or the src/app.postcss file. Configure Tailwind in the `tailwind.config.cjs` file. CSS will be purged for
-production builds.
+Use Tailwind anywhere. You can use Tailwind utility classes like `bg-blue-700` in the markup (components, routes,
+app.html). Use Tailwind directives like `@apply` and `@screen` or use the theme function in Svelte
+`<style lang="postcss">` blocks or the `src/app.css` file. Configure Tailwind in the `tailwind.config.cjs` file. CSS
+will be purged for production builds.
+
+This starter also fixes the [FOUC](https://github.com/svelte-add/svelte-add/issues/137) issue.
 
 ### Prettier
 
