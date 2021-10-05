@@ -78,7 +78,7 @@ The following configuration is used:
   "trailingComma": "none",
   "printWidth": 120,
   "proseWrap": "always",
-  "svelteSortOrder": "options-scripts-styles-markup",
+  "svelteSortOrder": "options-scripts-markup-styles",
   "svelteIndentScriptAndStyle": false
 }
 ```
@@ -97,6 +97,11 @@ Also, code looks cleaner too.
 
 Modern IDEs are smart enough to discern a block with either spaces or tabs. However, Github at times display an insane
 amount of whitespace when tabs are used. Just use spaces and get proper display all the time.
+
+#### Svelte sort order
+
+This is set to `scripts-markup-styles` to
+[optimize HMR](https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/faq.md#what-is-the-recommended-node-order-for-svelte-sfc-files).
 
 ### Linting
 
