@@ -32,10 +32,10 @@ $ npm run build
 
 ### Staging and Production builds
 
-Often, there are slight differences between `staging` and `production` builds. For example, you'll probably want to add
-the `noindex` meta for `staging` builds. This behaviour is
-[baked in](https://github.com/zerodevx/svelte-kit-starter/blob/main/src/routes/__layout.svelte). To access the build
-type within a Svelte component, do like so:
+Often, there are slight differences between `staging` and `production` builds. For example, you'll
+probably want to add the `noindex` meta for `staging` builds. This behaviour is
+[baked in](https://github.com/zerodevx/svelte-kit-starter/blob/main/src/routes/__layout.svelte). To
+access the build type within a Svelte component, do like so:
 
 ```html
 <script>
@@ -49,21 +49,24 @@ type within a Svelte component, do like so:
 
 ### Static SPA build
 
-Uses [adapter-static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) to pre-render `index.html` in
-all leaf (link) pages. This maintains SEO-bility. Leaf pages act as entry-points to the SPA; thereafter the client-side
-router takes control. Why? Because servers should just _serve_. The `/build` can then be uploaded to any static server.
+Uses [adapter-static](https://github.com/sveltejs/kit/tree/master/packages/adapter-static) to
+pre-render `index.html` in all leaf (link) pages. This maintains SEO-bility. Leaf pages act as
+entry-points to the SPA; thereafter the client-side router takes control. Why? Because servers
+should just _serve_. The `/build` can then be uploaded to any static server.
 
-**NOTE**: If you're using Github Pages, be sure to set `paths.base` to your repo (assuming that you're serving from
-`<user>.github.io/<repo>/`). Also, set `trailingSlash: 'always'`.
+**NOTE**: If you're using Github Pages, be sure to set `paths.base` to your repo (assuming that
+you're serving from `<user>.github.io/<repo>/`). Also, set `trailingSlash: 'always'`.
 
 ### Tailwind CSS
 
-Use Tailwind anywhere. You can use Tailwind utility classes like `bg-blue-700` in the markup (components, routes,
-app.html). Use Tailwind directives like `@apply` and `@screen` or use the theme function in Svelte
-`<style lang="postcss">` blocks or the `src/app.css` file. Configure Tailwind in the `tailwind.config.cjs` file. CSS
-will be purged for production builds.
+Use Tailwind anywhere. You can use Tailwind utility classes like `bg-blue-700` in the markup
+(components, routes, app.html). Use Tailwind directives like `@apply` and `@screen` or use the theme
+function in Svelte `<style lang="postcss">` blocks or the `src/app.css` file. Configure Tailwind in
+the `tailwind.config.cjs` file. CSS will be purged for production builds.
 
 This starter also fixes the [FOUC](https://github.com/svelte-add/svelte-add/issues/137) issue.
+
+Accordingly, `eslint-plugin-svelte3` is also set to `ignore-styles`.
 
 ### Prettier
 
@@ -76,7 +79,7 @@ The following configuration is used:
   "semi": false,
   "singleQuote": true,
   "trailingComma": "none",
-  "printWidth": 120,
+  "printWidth": 100,
   "proseWrap": "always",
   "svelteSortOrder": "options-scripts-markup-styles",
   "svelteIndentScriptAndStyle": false
@@ -85,7 +88,8 @@ The following configuration is used:
 
 #### No semis
 
-So. Semicolons are **optional** in Javascript. Ironically, there are more rules to follow when using semis than without.
+So. Semicolons are **optional** in Javascript. Ironically, there are more rules to follow when using
+semis than without.
 
 ```js
 ;[1, 2, 3].forEach(bar) // if you must, this is probably the only time you should use a semi;
@@ -95,8 +99,9 @@ Also, code looks cleaner too.
 
 #### Use spaces
 
-Modern IDEs are smart enough to discern a block with either spaces or tabs. However, Github at times display an insane
-amount of whitespace when tabs are used. Just use spaces and get proper display all the time.
+Modern IDEs are smart enough to discern a block with either spaces or tabs. However, Github at times
+display an insane amount of whitespace when tabs are used. Just use spaces and get proper display
+all the time.
 
 #### Svelte sort order
 
