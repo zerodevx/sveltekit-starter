@@ -4,7 +4,7 @@
   "semi": false,
   "singleQuote": true,
   "trailingComma": "none",
-  "printWidth": 120,
+  "printWidth": 100,
   "proseWrap": "always",
   "svelteSortOrder": "options-scripts-markup-styles",
   "svelteIndentScriptAndStyle": false
