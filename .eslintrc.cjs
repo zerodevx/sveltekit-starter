@@ -9,6 +9,9 @@ module.exports = {
     { files: ['*.svelte'], plugins: ['svelte3'], processor: 'svelte3/svelte3' },
     { files: ['*.html'], plugins: ['html'] }
   ],
+  settings: {
+    'svelte3/ignore-styles': () => true
+  },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020
