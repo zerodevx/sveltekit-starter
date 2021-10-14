@@ -45,6 +45,20 @@ access the build type within a Svelte component, do like so:
 <p>Build Type: {BUILD}</p>
 ```
 
+### App Versioning
+
+App version is picked up from the `version` field in `package.json` and accessible within your app.
+Use like so:
+
+```html
+<script>
+  ...
+  const VERSION = __APP_VERSION__
+</script>
+
+<p>The version number is v{VERSION}</p>
+```
+
 ## Opinions
 
 ### Static SPA build

@@ -12,6 +12,9 @@ module.exports = {
   settings: {
     'svelte3/ignore-styles': () => true
   },
+  globals: {
+    __APP_VERSION__: true
+  },
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020
