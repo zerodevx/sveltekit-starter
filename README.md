@@ -71,7 +71,7 @@ should just _serve_. The `/build` can then be uploaded to any static server.
 **NOTE**: If you're using Github Pages, be sure to set `paths.base` to your repo (assuming that
 you're serving from `<user>.github.io/<repo>/`). Also, set `trailingSlash: 'always'`.
 
-### Tailwind CSS
+### Tailwind CSS v3
 
 Use Tailwind anywhere. You can use Tailwind utility classes like `bg-blue-700` in the markup
 (components, routes, app.html). Use Tailwind directives like `@apply` and `@screen` or use the theme
