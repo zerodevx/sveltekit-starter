@@ -10,7 +10,10 @@ const config = {
     // hydrate the <div id="svelte"> element in src/app.html
     target: '#svelte',
     adapter: adapter({
-      fallback: 'index.html'
+      pages: 'build',
+      assets: 'build',
+      fallback: 'index.html',
+      precompress: false
     }),
     vite: () => ({
       define: {
@@ -24,6 +27,7 @@ const config = {
     })
   ],
   paths: {
+    // eg for github pages, base is `/your-repo-name`
     base: ''
   },
   ssr: false,
