@@ -1,31 +1,13 @@
-# svelte-kit-starter
+# sveltekit-starter
 
 > Opinionated starter template for web projects
 
-SvelteKit with Tailwind, ESLint, Prettier and a Static SPA Build.
+SvelteKit with Tailwindcss, ESLint, Prettier and a Static SPA Build.
 
 ## Usage
 
-```bash
-# Clone
-$ npx degit zerodevx/svelte-kit-starter my-app
-$ cd my-app
-
-# Upgrade
-$ npx npm-check-updates -u
-
-# Install
-$ npm i
-
-# Develop
-$ npm run dev -- --open
-
-# Format and Lint
-$ npm run format
-$ npm run lint
-
-# Build
-$ npm run build
+```
+$ npx degit zerodevx/sveltekit-starter my-app
 ```
 
 ## Features
@@ -88,12 +70,10 @@ The following configuration is used:
 
 ```json
 {
-  "useTabs": false,
-  "tabWidth": 2,
+  "printWidth": 100,
   "semi": false,
   "singleQuote": true,
   "trailingComma": "none",
-  "printWidth": 100,
   "proseWrap": "always",
   "svelteSortOrder": "options-scripts-markup-styles",
   "svelteIndentScriptAndStyle": false
