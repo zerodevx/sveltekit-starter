@@ -1,6 +1,10 @@
 module.exports = {
 	root: true,
 	extends: ['eslint:recommended', 'prettier'],
+	rules: {
+    'no-tabs': 'error',
+    'no-unexpected-multiline': 'error'
+  },
 	plugins: ['svelte3'],
 	overrides: [{ files: ['*.svelte'], processor: 'svelte3/svelte3' }],
 	parserOptions: {
