@@ -4,8 +4,8 @@
 
 The Svelte-world is akin to the universes of
 [Mad Max](https://en.wikipedia.org/wiki/Mad_Max:_Fury_Road) and
-[Split](https://en.wikipedia.org/wiki/Split_(2016_American_film) collided - full of peril, violent
-sandstorms and new beginnings with a touch of disassociative personality disorder.
+[Split](<https://en.wikipedia.org/wiki/Split_(2016_American_film)>) collided - full of peril,
+violent sandstorms and new beginnings with a touch of disassociative personality disorder.
 
 To help navigate through this madness, just like how Moses parted the Red Sea, behold the emergence
 of this repo. Cue angels singing. The best way to describe this is it's like a brick-layer - but
@@ -16,13 +16,15 @@ So let's get started.
 
 ## Usage
 
-This combo-patcher uses [zx](https://github.com/google/zx), so make sure that's installed. Then run:
+This combo-patcher uses [zx](https://github.com/google/zx), so make sure that's installed - then
+run:
 
 ```
-$ zx --install https://raw.githubusercontent.com/zerodevx/svelte-starter/master/index.mjs <app-name> [flags]
+$ zx --install https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs <app-name> [flags]
 ```
 
-This generates the starter based on the latest SvelteKit decisions. Output saved to `/app-name`.
+This generates the starter based on the latest SvelteKit decisions, then saves the output to
+`/app-name`.
 
 ### Flags
 
