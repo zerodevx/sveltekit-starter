@@ -1,4 +1,4 @@
-# svelte-starter
+# sveltekit-starter
 
 > Opinionated starter template for SvelteKit
 
@@ -20,24 +20,24 @@ This combo-patcher uses [zx](https://github.com/google/zx), so make sure that's 
 run:
 
 ```
-$ zx --install https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs <app-name> [flags]
+$ zx --install https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.js <app-name> [flags]
 ```
 
-This generates the starter based on the latest SvelteKit decisions, then saves the output to
+This generates the starter based on the last known SvelteKit decisions, then saves the output to
 `/app-name`.
 
 ### Flags
 
 | Flag | Type                                   | Default    | Description                        |
 | ---- | -------------------------------------- | ---------- | ---------------------------------- |
-| -o   | boolean                                | false      | Overwrite existing path if exists. |
+| -o   | boolean                                | false      | Overwrite existing path if exists  |
 | -t   | ('skeleton'\|'skeletonlib'\|'default') | 'skeleton' | Base template from `create-svelte` |
 
 ## Opinions
 
-### SvelteKit
+### Base
 
-Base skeleton `create-svelte` template with JSDoc+Prettier+ESLint+Playwright.
+Base `create-svelte` skeleton template with `jsdoc`, `prettier`, `eslint` and `playwright`.
 
 ### Tailwind CSS
 
@@ -50,6 +50,7 @@ both well, but spaces display better outside IDEs (I'm looking at you Github).
 
 ```json
 {
+  // ...
   "printWidth": 100,
   "useTabs": false,
   "semi": false,
@@ -77,7 +78,7 @@ module.exports = {
 
 ### Static site setup
 
-Seriously, don't use SSR unless you really need it. Installs `adapter-static` and adds sensible
+Seriously, don't use SSR unless you really need to. Installs `adapter-static` and adds sensible
 defaults.
 
 ## License
