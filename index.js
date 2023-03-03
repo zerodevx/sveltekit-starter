@@ -2,6 +2,8 @@
 
 import { create } from 'create-svelte' // @latest
 
+$.verbose = false
+
 export async function patchFiles(filepaths, ...replacers) {
   for (const file of [filepaths].flat()) {
     let contents = await fs.readFile(file, 'utf8')
@@ -10,6 +12,11 @@ export async function patchFiles(filepaths, ...replacers) {
     }
     await fs.writeFile(file, contents)
   }
+}
+
+export async function getVersion(pkg) {
+  const version = await $`npm show ${pkg} version`
+  return version.toString()
 }
 
 export async function addBaseTemplate({ name, template }) {
@@ -23,10 +30,13 @@ export async function addBaseTemplate({ name, template }) {
     playwright: true,
     vitest: false
   })
+  await fetch('https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/favicon.png').then(
+    (r) => r.body.pipe(fs.createWriteStream(path.join(name, 'static', 'favicon.png')))
+  )
 }
 
 export async function addTailwindcss({ name }) {
-  await $`cd ${name} && npx svelte-add@latest tailwindcss`.quiet()
+  await $`cd ${name} && npx -y svelte-add@latest tailwindcss`
 }
 
 export async function addPrettier({ name }) {
@@ -87,5 +97,8 @@ void (async function () {
   echo`- added adapter-static`
 
   echo`\nAll done! Complete the setup with:\n`
-  echo`$ cd ${opts.name} && npm i && npm run format`
+  echo`$ cd ${opts.name}`
+  echo`$ npx npm-check-updates -u`
+  echo`$ npm i`
+  echo`$ npm run format`
 })()
