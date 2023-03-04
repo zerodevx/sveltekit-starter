@@ -35,13 +35,13 @@ This generates the starter based on the last known SvelteKit decisions, then sav
 
 ## Opinions
 
-### Base
+### SvelteKit
 
 Base `create-svelte` skeleton template with `jsdoc`, `prettier`, `eslint` and `playwright`.
 
 ### Tailwind CSS
 
-Add `tailwindcss` using `svelte-add`.
+Adds `tailwindcss` using `svelte-add`, then adds `tailwindcss/typography`.
 
 ### Prettier config
 
@@ -80,6 +80,14 @@ module.exports = {
 
 Seriously, don't use SSR unless you really need to. Installs `adapter-static` and adds sensible
 defaults.
+
+### Custom fonts
+
+Use `fontsource` for self-hosted open-source fonts.
+
+### Custom icons
+
+Use `iconify` to create your own tree-shaken open-source icon set. Add icons in `/src/lib/icons.js`.
 
 ## License
 

@@ -4,8 +4,8 @@ import { create } from 'create-svelte' // @latest
 
 $.verbose = false
 
-export async function patchFiles(filepaths, ...replacers) {
-  for (const file of [filepaths].flat()) {
+async function patchFiles(files, ...replacers) {
+  for (const file of [files].flat()) {
     let contents = await fs.readFile(file, 'utf8')
     for (const [pattern, replacement] of replacers) {
       contents = contents.replace(pattern, replacement)
@@ -14,9 +14,15 @@ export async function patchFiles(filepaths, ...replacers) {
   }
 }
 
-export async function getVersion(pkg) {
-  const version = await $`npm show ${pkg} version`
-  return version.toString()
+async function patchPackage(name, ...dependencies) {
+  const version = async (dep) => (await $`npm show ${dep} version`).stdout.trim()
+  const file = path.join(name, 'package.json')
+  let pkg = await fs.readJson(file)
+  for (const dep of dependencies) {
+    pkg.devDependencies[dep.slice(1)] =
+      dep.charAt(0) === '+' ? `^${await version(dep.slice(1))}` : undefined
+  }
+  await fs.writeJson(file, pkg, { spaces: 2 })
 }
 
 export async function addBaseTemplate({ name, template }) {
@@ -37,11 +43,17 @@ export async function addBaseTemplate({ name, template }) {
 
 export async function addTailwindcss({ name }) {
   await $`cd ${name} && npx -y svelte-add@latest tailwindcss`
+  await patchPackage(name, '+@tailwindcss/typography')
+  await patchFiles(path.join(name, 'tailwind.config.cjs'), [
+    'plugins: []',
+    `plugins: [require('@tailwindcss/typography')]`
+  ])
 }
 
 export async function addPrettier({ name }) {
-  await fs.writeJson(path.join(name, '.prettierrc'), {
-    ...(await fs.readJson(path.join(name, '.prettierrc'))),
+  const file = path.join(name, '.prettierrc')
+  await fs.writeJson(file, {
+    ...(await fs.readJson(file)),
     printWidth: 100,
     useTabs: false,
     semi: false,
@@ -61,13 +73,37 @@ export async function addEslint({ name }) {
 }
 
 export async function addAdapterStatic({ name }) {
-  await patchFiles(
-    [path.join(name, 'package.json'), path.join(name, 'svelte.config.js')],
-    [`adapter-auto`, `adapter-static`]
-  )
+  await patchFiles(path.join(name, 'svelte.config.js'), [`adapter-auto`, `adapter-static`])
+  await patchPackage(name, '-@sveltejs/adapter-auto', '+@sveltejs/adapter-static')
   await fs.outputFile(
     path.join(name, 'src', 'routes', '+layout.js'),
     `export const prerender = true\n`
+  )
+}
+
+export async function addFontsource({ name }) {
+  await patchPackage(name, '+@fontsource/inter')
+  await patchFiles(path.join(name, 'src', 'routes', '+layout.svelte'), [
+    `<script>`,
+    `<script>import '@fontsource/inter/variable.css';`
+  ])
+  await patchFiles(
+    path.join(name, 'tailwind.config.cjs'),
+    [`const config`, `const dt = require('tailwindcss/defaultTheme');\n\nconst config`],
+    [`extend: {}`, `extend: { fontFamily: { sans: ['InterVariable', ...dt.fontFamily.sans] } }`]
+  )
+}
+
+export async function addIconify({ name }) {
+  await patchPackage(name, '+@iconify/svelte', '+@iconify-icons/mdi')
+  await fs.outputFile(
+    path.join(name, 'src', 'lib', 'icons.js'),
+    `import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte';\nimport check from '@iconify-icons/mdi/check';\n\naddIcon('check', check);\n\nexport { Icon as default }\n`
+  )
+  await patchFiles(
+    path.join(name, 'src', 'routes', '+page.svelte'),
+    [`<h1>`, `<script>import Icon from '$lib/icons'</script>\n\n<h1>`],
+    [`</p>`, `</p>\n\n<Icon class="w-12 h-12" icon='check' />\n`]
   )
 }
 
@@ -85,16 +121,13 @@ void (async function () {
     process.exit(1)
   }
 
-  await addBaseTemplate(opts)
-  echo`- created ${opts.template} template`
-  await addTailwindcss(opts)
-  echo`- added tailwindcss`
-  await addPrettier(opts)
-  echo`- patched prettier config`
-  await addEslint(opts)
-  echo`- patched eslint config`
-  await addAdapterStatic(opts)
-  echo`- added adapter-static`
+  await addBaseTemplate(opts).then(() => echo`- created ${opts.template} template`)
+  await addTailwindcss(opts).then(() => echo`- added tailwindcss`)
+  await addPrettier(opts).then(() => echo`- patched prettier config`)
+  await addEslint(opts).then(() => echo`- patched eslint config`)
+  await addAdapterStatic(opts).then(() => echo`- added adapter-static`)
+  await addFontsource(opts).then(() => echo`- added fontsource`)
+  await addIconify(opts).then(() => echo`- added iconify`)
 
   echo`\nAll done! Complete the setup with:\n`
   echo`$ cd ${opts.name}`
