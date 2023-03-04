@@ -20,7 +20,7 @@ This combo-patcher uses [zx](https://github.com/google/zx), so make sure that's 
 run:
 
 ```
-$ zx --install https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs <app-name> [flags]
+$ zx -i https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs <app-name> [flags]
 ```
 
 This generates the starter based on the last known SvelteKit decisions, then saves the output to

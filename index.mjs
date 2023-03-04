@@ -4,6 +4,11 @@ import { create } from 'create-svelte' // @latest
 
 $.verbose = false
 
+// Fix stupid `zx -i` logic (https://github.com/google/zx/blob/main/src/deps.ts)
+const SHIM_I = 'imp' + 'ort'
+const SHIM_F = 'fr' + 'om'
+const SHIM_R = 'req' + 'uire'
+
 async function patchFiles(files, ...replacers) {
   for (const file of [files].flat()) {
     let contents = await fs.readFile(file, 'utf8')
@@ -46,7 +51,7 @@ export async function addTailwindcss({ name }) {
   await patchPackage(name, '+@tailwindcss/typography')
   await patchFiles(path.join(name, 'tailwind.config.cjs'), [
     'plugins: []',
-    `plugins: [require('@tailwindcss/typography')]`
+    `plugins: [${SHIM_R}('@tailwindcss/typography')]`
   ])
 }
 
@@ -85,11 +90,11 @@ export async function addFontsource({ name }) {
   await patchPackage(name, '+@fontsource/inter')
   await patchFiles(path.join(name, 'src', 'routes', '+layout.svelte'), [
     `<script>`,
-    `<script>import '@fontsource/inter/variable.css';`
+    `<script>${SHIM_I} '@fontsource/inter/variable.css';`
   ])
   await patchFiles(
     path.join(name, 'tailwind.config.cjs'),
-    [`const config`, `const dt = require('tailwindcss/defaultTheme');\n\nconst config`],
+    [`const config`, `const dt = ${SHIM_R}('tailwindcss/defaultTheme');\n\nconst config`],
     [`extend: {}`, `extend: { fontFamily: { sans: ['InterVariable', ...dt.fontFamily.sans] } }`]
   )
 }
@@ -98,11 +103,11 @@ export async function addIconify({ name }) {
   await patchPackage(name, '+@iconify/svelte', '+@iconify-icons/mdi')
   await fs.outputFile(
     path.join(name, 'src', 'lib', 'icons.js'),
-    `import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte';\nimport check from '@iconify-icons/mdi/check';\n\naddIcon('check', check);\n\nexport { Icon as default }\n`
+    `${SHIM_I} Icon, { addIcon } ${SHIM_F} '@iconify/svelte/dist/OfflineIcon.svelte';\n${SHIM_I} check ${SHIM_F} '@iconify-icons/mdi/check';\n\naddIcon('check', check);\n\nexport { Icon as default }\n`
   )
   await patchFiles(
     path.join(name, 'src', 'routes', '+page.svelte'),
-    [`<h1>`, `<script>import Icon from '$lib/icons'</script>\n\n<h1>`],
+    [`<h1>`, `<script>${SHIM_I} Icon ${SHIM_F} '$lib/icons'</script>\n\n<h1>`],
     [`</p>`, `</p>\n\n<Icon class="w-12 h-12" icon='check' />\n`]
   )
 }
