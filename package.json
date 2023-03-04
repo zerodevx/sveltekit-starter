@@ -1,18 +1,17 @@
 {
   "name": "@zerodevx/sveltekit-starter",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Opinionated starter template for SvelteKit",
   "author": "Jason Lee <jason@zerodevx.com>",
   "scripts": {
-    "start": "zx index.js temp -o",
+    "start": "zx index.mjs temp -o",
     "format": "prettier --ignore-path .gitignore --write ."
   },
   "devDependencies": {
     "create-svelte": "^3.1.0",
     "prettier": "^2.8.4"
   },
-  "type": "module",
-  "main": "index.js",
+  "main": "index.mjs",
   "license": "ISC",
   "repository": "github:zerodevx/sveltekit-starter"
 }

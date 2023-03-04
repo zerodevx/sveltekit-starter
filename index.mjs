@@ -107,31 +107,32 @@ export async function addIconify({ name }) {
   )
 }
 
-void (async function () {
-  const opts = {
-    name: argv._[0],
-    template: argv.t || 'skeleton'
-  }
-  if (!opts.name) {
-    echo`Error: please specify the app name`
-    process.exit(1)
-  }
-  if ((await fs.pathExists(opts.name)) && !argv.o) {
-    echo`Error: path ${path.sep}${opts.name} already exists, specify -o flag to overwrite`
-    process.exit(1)
-  }
+const opts = {
+  name: argv._[0],
+  template: argv.t || 'skeleton'
+}
+if (!opts.name) {
+  echo`Error: please specify the app name`
+  process.exit(1)
+}
+if ((await fs.pathExists(opts.name)) && !argv.o) {
+  echo`Error: path ${path.sep}${opts.name} already exists, specify -o flag to overwrite`
+  process.exit(1)
+}
 
-  await addBaseTemplate(opts).then(() => echo`- created ${opts.template} template`)
-  await addTailwindcss(opts).then(() => echo`- added tailwindcss`)
-  await addPrettier(opts).then(() => echo`- patched prettier config`)
-  await addEslint(opts).then(() => echo`- patched eslint config`)
-  await addAdapterStatic(opts).then(() => echo`- added adapter-static`)
-  await addFontsource(opts).then(() => echo`- added fontsource`)
-  await addIconify(opts).then(() => echo`- added iconify`)
+await addBaseTemplate(opts).then(() => echo`- created ${opts.template} template`)
+await addTailwindcss(opts).then(() => echo`- added tailwindcss`)
+await addPrettier(opts).then(() => echo`- patched prettier config`)
+await addEslint(opts).then(() => echo`- patched eslint config`)
+await addAdapterStatic(opts).then(() => echo`- added adapter-static`)
+await addFontsource(opts).then(() => echo`- added fontsource`)
+await addIconify(opts).then(() => echo`- added iconify`)
 
-  echo`\nAll done! Complete the setup with:\n`
-  echo`$ cd ${opts.name}`
-  echo`$ npx npm-check-updates -u`
-  echo`$ npm i`
-  echo`$ npm run format`
-})()
+echo`
+All done! Complete the setup with:
+
+$ cd ${opts.name}
+$ npx npm-check-updates -u
+$ npm i
+$ npm run format
+`
