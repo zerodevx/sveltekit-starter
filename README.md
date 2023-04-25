@@ -16,22 +16,36 @@ So let's get started.
 
 ## Usage
 
-This combo-patcher uses [zx](https://github.com/google/zx), so make sure that's installed - then
-run:
+### Create Svelte
+
+Create the Svelte template using `create-svelte` with these recommended options:
+
+- [x] Skeleton project
+- [x] JavaScript with JSDoc comments
+- [x] ESLint, Prettier and Playwight/Vitest
 
 ```
-$ zx -i https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs <app-name> [flags]
+$ npm create svelte@latest my-app
 ```
 
-This generates the starter based on the last known SvelteKit decisions, then saves the output to
-`/app-name`.
+### Run combo-patcher
 
-### Flags
+Run the combo-patcher. This uses [zx](https://github.com/google/zx), so make sure that's installed.
 
-| Flag | Type                                   | Default    | Description                        |
-| ---- | -------------------------------------- | ---------- | ---------------------------------- |
-| -o   | boolean                                | false      | Overwrite existing path if exists  |
-| -t   | ('skeleton'\|'skeletonlib'\|'default') | 'skeleton' | Base template from `create-svelte` |
+```
+$ zx https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs my-app
+```
+
+### Update dependencies
+
+Prepare the starter based on the last known SvelteKit decisions.
+
+```
+$ cd my-app
+$ npx npm-check-updates -u
+$ npm i
+$ npm run format
+```
 
 ## Opinions
 
