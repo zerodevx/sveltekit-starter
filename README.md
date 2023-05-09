@@ -18,7 +18,7 @@ So let's get started.
 
 ### Create Svelte
 
-Create the Svelte template using `create-svelte` with these recommended options:
+Generate the base template using `create-svelte` with these recommended options:
 
 - [x] Skeleton project
 - [x] JavaScript with JSDoc comments
@@ -30,15 +30,16 @@ $ npm create svelte@latest my-app
 
 ### Run combo-patcher
 
-Run the combo-patcher. This uses [zx](https://github.com/google/zx), so make sure that's installed.
+Then, layer the patches based on the last-known SvelteKit decisions. This uses
+[zx](https://github.com/google/zx), so make sure that's installed.
 
 ```
-$ zx https://raw.githubusercontent.com/zerodevx/sveltekit-starter/main/index.mjs my-app
+$ zx https://cdn.jsdelivr.net/gh/zerodevx/svelte-starter@2/index.mjs my-app
 ```
 
 ### Update dependencies
 
-Prepare the starter based on the last known SvelteKit decisions.
+Finally, apply the finishing touches.
 
 ```
 $ cd my-app
