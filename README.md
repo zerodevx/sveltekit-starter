@@ -65,7 +65,7 @@ both well, but spaces display better outside IDEs (I'm looking at you Github).
 
 ```json
 {
-  // ...
+  //...
   "printWidth": 100,
   "useTabs": false,
   "semi": false,
@@ -83,7 +83,7 @@ Add defence against `no-semi`:
 
 ```js
 module.exports = {
-  ...
+  //...
   rules: {
     'no-tabs': 'error',
     'no-unexpected-multiline': 'error'
@@ -98,11 +98,14 @@ defaults.
 
 ### Custom fonts
 
-Use `fontsource` for self-hosted open-source fonts.
+Use `@fontsource-variable` for self-hosted open-source fonts.
 
 ### Custom icons
 
-Use `iconify` to create your own tree-shaken open-source icon set. Add icons in `/src/lib/icons.js`.
+Use `@iconify/tailwind` plugin for high-performance css-only icons. Apply icon classes using
+`icon-[{prefix}--{name}]`. Install icon sets at `@iconify-json/{name}`. Only icons you use will be
+included in your build. Read more at
+[Iconify](https://github.com/iconify/iconify/tree/main/plugins/tailwind).
 
 ## License
 

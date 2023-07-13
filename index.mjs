@@ -39,8 +39,8 @@ await spinner('add tailwindcss', async () => {
   await $`cd ${name} && npx -y svelte-add@latest tailwindcss`
   await patchPackage(name, '+@tailwindcss/typography')
   await patchFiles(path.join(name, 'tailwind.config.cjs'), [
-    'plugins: []',
-    `plugins: [require('@tailwindcss/typography')]`
+    `plugins: [`,
+    `plugins: [require('@tailwindcss/typography'),`
   ])
 })
 
@@ -76,29 +76,29 @@ await spinner('add adapter-static', async () => {
 })
 
 await spinner('add fontsource', async () => {
-  await patchPackage(name, '+@fontsource/inter')
+  await patchPackage(name, '+@fontsource-variable/inter')
   await patchFiles(path.join(name, 'src', 'routes', '+layout.svelte'), [
     `<script>`,
-    `<script>import '@fontsource/inter/variable.css';`
+    `<script>import '@fontsource-variable/inter';`
   ])
   await patchFiles(
     path.join(name, 'tailwind.config.cjs'),
     [`const config`, `const dt = require('tailwindcss/defaultTheme');\n\nconst config`],
-    [`extend: {}`, `extend: { fontFamily: { sans: ['InterVariable', ...dt.fontFamily.sans] } }`]
+    [`extend: {}`, `extend: { fontFamily: { sans: ['Inter Variable', ...dt.fontFamily.sans] } }`]
   )
 })
 
 await spinner('add iconify', async () => {
-  await patchPackage(name, '+@iconify/svelte', '+@iconify-icons/mdi')
-  await fs.outputFile(
-    path.join(name, 'src', 'lib', 'icons.js'),
-    `import Icon, { addIcon } from '@iconify/svelte/dist/OfflineIcon.svelte';\nimport check from '@iconify-icons/mdi/check';\n\naddIcon('check', check);\n\nexport { Icon as default }\n`
-  )
+  await patchPackage(name, '+@iconify/tailwind', '+@iconify-json/mdi')
   await patchFiles(
-    path.join(name, 'src', 'routes', '+page.svelte'),
-    [`<h1>`, `<script>import Icon from '$lib/icons'</script>\n\n<h1>`],
-    [`</p>`, `</p>\n\n<Icon class="w-12 h-12" icon='check' />\n`]
+    path.join(name, 'tailwind.config.cjs'),
+    [`const dt`, `const { addDynamicIconSelectors } = require('@iconify/tailwind')\nconst dt`],
+    [`plugins: [`, `plugins: [addDynamicIconSelectors(),`]
   )
+  await patchFiles(path.join(name, 'src', 'routes', '+page.svelte'), [
+    `</h1>`,
+    `</h1>\n<span class="icon-[mdi--heart] w-8 h-8 text-red-600 animate-pulse" />\n`
+  ])
 })
 
 echo`
