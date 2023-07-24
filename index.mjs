@@ -75,6 +75,17 @@ await spinner('add adapter-static', async () => {
   )
 })
 
+await spinner('add versioning', async () => {
+  await patchFiles(
+    path.join(name, 'svelte.config.js'),
+    [
+      `static';`,
+      `static';\nimport { readFileSync } from 'node:fs'\n\nconst { version: name } = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8'))\n`
+    ],
+    [`adapter()`, `adapter(),version:{name}`]
+  )
+})
+
 await spinner('add fontsource', async () => {
   await patchPackage(name, '+@fontsource-variable/inter')
   await patchFiles(path.join(name, 'src', 'routes', '+layout.svelte'), [
