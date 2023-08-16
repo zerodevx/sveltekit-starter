@@ -43,8 +43,7 @@ Finally, apply the finishing touches.
 
 ```
 $ cd my-app
-$ npx npm-check-updates -u
-$ npm i
+$ npm update --save
 $ npm run format
 ```
 
