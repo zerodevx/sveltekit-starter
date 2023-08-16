@@ -94,7 +94,7 @@ await spinner('add fontsource', async () => {
   ])
   await patchFiles(
     path.join(name, 'tailwind.config.cjs'),
-    [`const config`, `const dt = require('tailwindcss/defaultTheme');\n\nconst config`],
+    [`/**`, `const dt = require('tailwindcss/defaultTheme');\n\n/**`],
     [`extend: {}`, `extend: { fontFamily: { sans: ['Inter Variable', ...dt.fontFamily.sans] } }`]
   )
 })
@@ -103,7 +103,7 @@ await spinner('add iconify', async () => {
   await patchPackage(name, '+@iconify/tailwind', '+@iconify-json/mdi')
   await patchFiles(
     path.join(name, 'tailwind.config.cjs'),
-    [`const dt`, `const { addDynamicIconSelectors } = require('@iconify/tailwind')\nconst dt`],
+    [`const dt`, `const { addDynamicIconSelectors } = require('@iconify/tailwind');\nconst dt`],
     [`plugins: [`, `plugins: [addDynamicIconSelectors(),`]
   )
   await patchFiles(path.join(name, 'src', 'routes', '+page.svelte'), [
@@ -116,7 +116,6 @@ echo`
 All done! Complete the setup with:
 
 $ cd ${name}
-$ npx npm-check-updates -u
-$ npm i
+$ npm update --save
 $ npm run format
 `
