@@ -55,7 +55,8 @@ Base `create-svelte` skeleton template with `jsdoc`, `prettier`, `eslint` and `p
 
 ### Tailwind CSS
 
-Adds `tailwindcss` using `svelte-add`, then adds `tailwindcss/typography`.
+Adds `tailwindcss` and `prettier-plugin-tailwindcss` using `svelte-add`, then adds
+`tailwindcss/typography`.
 
 ### Prettier config
 
