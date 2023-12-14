@@ -110,8 +110,8 @@ Use `@fontsource-variable` for self-hosted open-source fonts.
 ### Icons
 
 Use `@iconify/tailwind` plugin for high-performance css-only icons. Apply icon classes using
-`icon-[{prefix}--{name}]`. Install icon sets at `@iconify-json/{prefix}`. Only icons you use will be
-included in your build. Read more at
+`icon-[{prefix}--{name}]`. Install icon sets at `@iconify-json/{prefix}`. Set icon size using
+standard tw classes eg. `h-6 w-6`. Only icons you use will be included in your build. Read more at
 [Iconify](https://github.com/iconify/iconify/tree/main/plugins/tailwind).
 
 ## License

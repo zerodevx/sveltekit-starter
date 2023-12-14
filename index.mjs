@@ -104,7 +104,7 @@ await spinner('add iconify', async () => {
   await patchFiles(
     path.join(name, 'tailwind.config.cjs'),
     [`const dt`, `const { addDynamicIconSelectors } = require('@iconify/tailwind');\nconst dt`],
-    [`plugins: [`, `plugins: [addDynamicIconSelectors(),`]
+    [`plugins: [`, `plugins: [addDynamicIconSelectors({ scale: 0 }),`]
   )
   await patchFiles(path.join(name, 'src', 'routes', '+page.svelte'), [
     `</h1>`,
