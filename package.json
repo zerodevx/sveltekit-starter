@@ -1,16 +1,23 @@
 {
   "name": "@zerodevx/sveltekit-starter",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Opinionated starter template for SvelteKit",
   "author": "Jason Lee <jason@zerodevx.com>",
+  "private": true,
   "scripts": {
     "start": "zx index.mjs temp",
-    "format": "prettier --ignore-path .gitignore --write ."
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "@eslint/js": "^9.9.1",
+    "eslint": "^9.9.1",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
+    "prettier": "^3.3.3"
   },
-  "main": "index.mjs",
+  "type": "module",
+  "exports": "./index.mjs",
   "license": "ISC",
   "repository": "github:zerodevx/sveltekit-starter"
 }
