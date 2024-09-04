@@ -42,6 +42,7 @@ await spinner('replace favicon', async () => {
 await spinner('add tailwindcss, iconify and fontsource', async () => {
   await patchPackage(
     '+tailwindcss',
+    '+autoprefixer',
     '+@tailwindcss/typography',
     '+@fontsource-variable/inter',
     '+@iconify/tailwind',
@@ -95,7 +96,7 @@ import '../app.pcss'
   )
   await patchFiles(p('src', 'routes', '+page.svelte'), [
     `</h1>`,
-    `</h1>\n<span class="iconify mdi--heart text-red-600 animate-pulse" />\n`
+    `</h1>\n<span class="iconify mdi--heart text-xl text-red-600 animate-pulse" />\n`
   ])
   await patchFiles(
     p('svelte.config.js'),
@@ -123,7 +124,7 @@ await spinner('patch prettier', async () => {
 await spinner('patch eslint', async () => {
   await patchFiles(p('eslint.config.js'), [
     `languageOptions`,
-    `rules: { 'no-tabs': 'error', 'no-unexpected-multiline': 'error' }, languageOptions`
+    `rules:{'no-tabs':'error','no-unexpected-multiline':'error'}, languageOptions`
   ])
 })
 
@@ -140,7 +141,7 @@ await spinner('add versioning', async () => {
       `static';`,
       `static';\nimport { readFileSync } from 'node:fs'\n\nconst { version: name } = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8'))\n`
     ],
-    [`adapter()`, `adapter(),version:{name}`]
+    [`adapter()`, `adapter(), version:{name}`]
   )
 })
 
