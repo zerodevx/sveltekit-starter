@@ -1,6 +1,6 @@
 {
   "name": "@zerodevx/sveltekit-starter",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "Opinionated starter template for SvelteKit",
   "author": "Jason Lee <jason@zerodevx.com>",
   "private": true,

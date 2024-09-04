@@ -2,7 +2,7 @@
 
 > Opinionated starter template for SvelteKit
 
-Svelte-world is akin to the fiery aftermath when the universes of
+The Svelte ecosystem is akin to the fiery aftermath when the worlds of
 [Mad Max](https://en.wikipedia.org/wiki/Mad_Max:_Fury_Road) and
 [Split](<https://en.wikipedia.org/wiki/Split_(2016_American_film)>) collide - full of peril, violent
 sandstorms and new beginnings with a touch of dissociative identity disorder.
