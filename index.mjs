@@ -113,7 +113,7 @@ await patchFiles(
     `adapter-auto';`,
     `adapter-static';\nimport { readFileSync } from 'node:fs';\n\nconst { version: name } = JSON.parse(readFileSync(new URL('package.json', import.meta.url), 'utf8'));`
   ],
-  [`adapter()`, `adapter(), version:{name}`],
+  [`adapter()`, `adapter({fallback:'404.html'}), version:{name}`],
   [`\n};`, `, preprocess: [vitePreprocess()]\n};`]
 )
 
